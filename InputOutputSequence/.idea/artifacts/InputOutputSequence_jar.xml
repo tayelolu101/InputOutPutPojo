@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="InputOutputSequence:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/InputOutputSequence_jar</output-path>
+    <root id="archive" name="InputOutputSequence.jar">
+      <element id="module-output" name="InputOutputSequence" />
+    </root>
+  </artifact>
+</component>
