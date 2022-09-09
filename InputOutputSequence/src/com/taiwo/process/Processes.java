@@ -11,11 +11,13 @@ public class Processes {
 
     public void start_process(String inboxPath, String outboxPath, String Seq) throws customException {
         String [] seqs = Seq.split(" ");
+        System.out.println("Checking sequence length ........................................");
         System.out.println("LEN : " + seqs.length);
         if (seqs.length == 0 || seqs.length > 20){
-            throw new customException( "The length of sequence does not meet criteria" );
+            throw new customException( "The length of sequence does not meet criteria........." );
         }
-        String Project_dir = System.getProperty("user.dir") + "\\src";//\\com\\taiwo";
+        System.out.println("Getting Project root path .........................................");
+        String Project_dir = System.getProperty("user.dir") + "\\src";
         inboxPath = inboxPath.endsWith(".txt") ? Project_dir + "\\inbox\\" + inboxPath : Project_dir + "\\inbox\\" + inboxPath + ".txt";
         System.out.println("INBOX PATH : " + inboxPath);
 
@@ -28,23 +30,31 @@ public class Processes {
         }
         for (int i = 0; i < seqs.length; i++){
             System.out.println("SEQ :" + seqs[i]);
-            if (seqs[i].trim().equalsIgnoreCase("1") || seqs[i].trim().equals("1"))
+            if (seqs[i].trim().equalsIgnoreCase("1") || seqs[i].trim().equals("1")) {
+                System.out.println("Convert 7 to e starting ...........................");
                 result_from_inbox_file = convert_7_e(result_from_inbox_file);
-            else if (seqs[i].trim().equalsIgnoreCase("2") || seqs[i].trim().equals("2"))
+                System.out.println("Convert 7 to e ending ...........................");
+            }else if (seqs[i].trim().equalsIgnoreCase("2") || seqs[i].trim().equals("2")) {
+                System.out.println("Convert uppercase starting ...........................");
                 result_from_inbox_file = convert_to_upperCase(result_from_inbox_file);
-            else if (seqs[i].trim().equalsIgnoreCase("3") || seqs[i].trim().equals("3"))
+                System.out.println("Convert uppercase ending ...........................");
+            }else if (seqs[i].trim().equalsIgnoreCase("3") || seqs[i].trim().equals("3")) {
+                System.out.println("Remove whitespaces starting ...........................");
                 result_from_inbox_file = remove_white_spaces(result_from_inbox_file);
-            else if (seqs[i].trim().equalsIgnoreCase("4") || seqs[i].trim().equals("4"))
+                System.out.println("Remove whitespaces ending ...........................");
+            }else if (seqs[i].trim().equalsIgnoreCase("4") || seqs[i].trim().equals("4")) {
+                System.out.println("Covert to Ascii starting ...........................");
                 result_from_inbox_file = convert_to_ascii(result_from_inbox_file);
-            else {
-                throw new customException("INVALID SEQUENCE NUMBER : " + seqs[1]);
+                System.out.println("Covert to Ascii ending ...........................");
+            }else {
+                throw new customException("INVALID SEQUENCE NUMBER.............. : " + seqs[1]);
             }
         }
         write_to_file(outboxPath, result_from_inbox_file);
     }
 
     private String read_input_file(String inputFile){
-
+        System.out.println("Start reading from input file...........................");
         File file = new File(inputFile);
         // Declaring a string variable
         String st;
@@ -59,14 +69,16 @@ public class Processes {
                 stringBuilder.append(st + System.lineSeparator());
             }
             input_file_string = stringBuilder.toString();
+            System.out.println("End of reading from input file...........................");
         }catch (Exception ex){
-            System.err.println("Error Reading input file");
+            System.err.println("Error Reading input file..................................");
             ex.printStackTrace();
         }
         return input_file_string;
     }
 
     private void write_to_file(String output, String content){
+        System.out.println("Start writing to output file...................................");
         // Creating an instance of file
         Path path = Paths.get(output);
         // Converting string to byte array
@@ -78,12 +90,13 @@ public class Processes {
             // Now calling Files.write() method using path
             // and byte array
             Files.write(path, arr);
+            System.out.println("End writing to output file...........................");
         }
         // Catch block to handle the exceptions
         catch (Exception ex) {
             // Print message as exception occurred when
             // invalid path of local machine is passed
-            System.err.println("Invalid Path");
+            System.err.println("Error writing to output file........................");
         }
     }
 
