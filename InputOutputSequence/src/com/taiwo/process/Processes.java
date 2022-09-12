@@ -17,7 +17,7 @@ public class Processes {
             throw new customException( "The length of sequence does not meet criteria........." );
         }
         System.out.println("Getting Project root path .........................................");
-        String Project_dir = System.getProperty("user.dir") + "\\src";
+        String Project_dir = System.getProperty("user.dir");// + "\\src";
         inboxPath = inboxPath.endsWith(".txt") ? Project_dir + "\\inbox\\" + inboxPath : Project_dir + "\\inbox\\" + inboxPath + ".txt";
         System.out.println("INBOX PATH : " + inboxPath);
 
@@ -35,7 +35,7 @@ public class Processes {
         write_to_file(outboxPath, result_from_inbox_file);
     }
 
-    private String read_input_file(String inputFile){
+    public String read_input_file(String inputFile){
         System.out.println("Start reading from input file...........................");
         File file = new File(inputFile);
         // Declaring a string variable
@@ -58,7 +58,7 @@ public class Processes {
         return input_file_string;
     }
 
-    private void write_to_file(String output, String content){
+    public void write_to_file(String output, String content){
         System.out.println("Start writing to output file...................................");
         // Creating an instance of file
         Path path = Paths.get(output);
@@ -81,19 +81,19 @@ public class Processes {
         }
     }
 
-    private String convert_7_e(String inputString){
+    public String convert_7_e(String inputString){
         return inputString.replace('7', 'e');
     }
 
-    private String convert_to_upperCase(String inputString){
+    public String convert_to_upperCase(String inputString){
         return inputString.toUpperCase();
     }
 
-    private String remove_white_spaces(String inputString){
+    public String remove_white_spaces(String inputString){
         return inputString.trim().replaceAll("\\s", "");
     }
 
-    private String convert_to_ascii(String inputString){
+    public String convert_to_ascii(String inputString){
         String result = "";
         StringBuilder stringBuilder = new StringBuilder(result);
         for(int i = 0; i < inputString.length(); i++){
@@ -108,7 +108,7 @@ public class Processes {
         return stringBuilder.toString();
     }
 
-    private String switch_case_option(String [] Seq, String res) throws customException {
+    public String switch_case_option(String [] Seq, String res) throws customException {
         System.out.println("Using the switchCase Method ...........................");
         for(String seqs : Seq){
             switch (seqs){
@@ -139,7 +139,7 @@ public class Processes {
         return res;
     }
 
-    private String for_each_option(String [] seqs, String con) throws customException{
+    public String for_each_option(String [] seqs, String con) throws customException{
         System.out.println("Using the forEach Method ...........................");
         for (int i = 0; i < seqs.length; i++){
             System.out.println("SEQ :" + seqs[i]);
